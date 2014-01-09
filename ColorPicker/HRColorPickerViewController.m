@@ -90,7 +90,10 @@
     }
     
     colorPickerView = [[HRColorPickerView alloc] initWithStyle:style defaultColor:rgbColor];
-    
+
+    if (self.delegate && [((NSObject *)self.delegate) conformsToProtocol:@protocol(HRColorPickerDelegate)])
+        colorPickerView.delegate = self.delegate;
+
     [self.view addSubview:colorPickerView];
     
     if (_saveStyle == HCPCSaveStyleSaveAndCancel) {
